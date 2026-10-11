@@ -1,0 +1,10 @@
+{
+  "name": "com.agentfactory.backend-contracts",
+  "version": "0.1.0",
+  "displayName": "AgentFactory Backend Contracts",
+  "description": "Shared data contracts, simulation interfaces, handoff documentation, and acceptance criteria for the WaterFactory simulation.",
+  "unity": "6000.3",
+  "author": {
+    "name": "WaterFactory Team"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "saveVersion": 1,
+  "configVersion": 1,
+  "worldVersion": 0,
+  "simulationStepId": 0,
+  "simTimeSeconds": 0.0,
+  "features": {
+    "temperatureEnabled": false,
+    "phaseChangeEnabled": false,
+    "dayNightEnabled": false,
+    "aiAssistantEnabled": false
+  },
+  "pauseReasons": [],
+  "economy": {
+    "balance": 5000.0,
+    "initialBalance": 5000.0,
+    "lifetimeIncome": 0.0,
+    "lifetimeExpense": 0.0,
+    "bankruptcy": {
+      "isBankruptcyPaused": false,
+      "balanceWhenTriggered": 0.0
+    },
+    "nextTransactionSequence": 1
+  },
+  "factories": {},
+  "story": {
+    "storyDefinitionId": "main",
+    "chapters": {},
+    "contracts": {},
+    "unlockedIds": [
+      "device_trade_port",
+      "device_filter_tank",
+      "pipe_basic",
+      "recipe_basic_filter"
+    ],
+    "mainStoryCompleted": false,
+    "endlessModeUnlocked": false
+  },
+  "ledger": [],
+  "eventLog": [],
+  "processedRequests": {}
+}
