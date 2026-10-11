@@ -1,8 +1,42 @@
-namespace AgentFactory.Contracts.Core;
+﻿#nullable enable
+using System;
+using System.Collections.Generic;
+using System.Linq;
+namespace AgentFactory.Contracts.Core
+{
 
-public readonly record struct GridCell(int X, int Y);
-public readonly record struct GridSize(int Width, int Height);
-public readonly record struct GridAnchor(GridCell Cell, GridDirection Rotation);
+public readonly struct GridCell : IEquatable<GridCell>
+{
+    public GridCell(int x, int y) { X = x; Y = y; }
+    public int X { get; }
+    public int Y { get; }
+    public bool Equals(GridCell other) => X == other.X && Y == other.Y;
+    public override bool Equals(object obj) => obj is GridCell other && Equals(other);
+    public override int GetHashCode() => unchecked((X * 397) ^ Y);
+    public override string ToString() => $"({X},{Y})";
+    public static bool operator ==(GridCell left, GridCell right) => left.Equals(right);
+    public static bool operator !=(GridCell left, GridCell right) => !left.Equals(right);
+}
+
+public readonly struct GridSize : IEquatable<GridSize>
+{
+    public GridSize(int width, int height) { Width = width; Height = height; }
+    public int Width { get; }
+    public int Height { get; }
+    public bool Equals(GridSize other) => Width == other.Width && Height == other.Height;
+    public override bool Equals(object obj) => obj is GridSize other && Equals(other);
+    public override int GetHashCode() => unchecked((Width * 397) ^ Height);
+}
+
+public readonly struct GridAnchor : IEquatable<GridAnchor>
+{
+    public GridAnchor(GridCell cell, GridDirection rotation) { Cell = cell; Rotation = rotation; }
+    public GridCell Cell { get; }
+    public GridDirection Rotation { get; }
+    public bool Equals(GridAnchor other) => Cell.Equals(other.Cell) && Rotation == other.Rotation;
+    public override bool Equals(object obj) => obj is GridAnchor other && Equals(other);
+    public override int GetHashCode() => unchecked((Cell.GetHashCode() * 397) ^ (int)Rotation);
+}
 
 public enum GridDirection { North, East, South, West }
 public enum Phase { Solid, Liquid, Gas }
@@ -30,3 +64,4 @@ public enum DeviceOperationType { None, Repair, Upgrade, Demolition, RecipeChang
 public enum StoryProgressStatus { Locked, Available, Active, Completed, Expired, Abandoned }
 public enum StoryObjectiveType { PurchaseLand, PurchaseFactory, HireAgent, BuildDevice, BuildPipe, CreateValidConnection, CreateProductionLine, SelectRecipe, EnableImport, ProduceFluid, DeliverOrder, SellFluid, RepairDevice, RepairPipe, UpgradeDevice, ReachBalance, MaintainProduction }
 public enum WorldPauseReason { PlayerPause, SharedMultiplayerPause, BankruptcyPause, Loading }
+}

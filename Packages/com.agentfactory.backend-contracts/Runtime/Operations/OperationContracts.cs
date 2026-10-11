@@ -1,6 +1,11 @@
+﻿#nullable enable
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using AgentFactory.Contracts.Core;
 
-namespace AgentFactory.Contracts.Operations;
+namespace AgentFactory.Contracts.Operations
+{
 
 public abstract record OperationRequest(string RequestId, string PlayerId, long ExpectedWorldVersion);
 public sealed record ConfirmBlueprintRequest(string RequestId, string PlayerId, long ExpectedWorldVersion, string FactoryId, string DefinitionId, GridAnchor Anchor, string? ManuallyAssignedAgentId = null) : OperationRequest(RequestId, PlayerId, ExpectedWorldVersion);
@@ -15,16 +20,17 @@ public sealed record AcceptOrderRequest(string RequestId, string PlayerId, long 
 
 public sealed class OperationResult
 {
-    public required string RequestId { get; init; }
-    public bool Success { get; init; }
-    public required string ResultCode { get; init; }
-    public string? MessageKey { get; init; }
-    public long PreviousWorldVersion { get; init; }
-    public long ResultingWorldVersion { get; init; }
-    public List<string> AffectedObjectIds { get; init; } = new();
-    public List<string> CreatedObjectIds { get; init; } = new();
-    public decimal MoneyChange { get; init; }
-    public Dictionary<string, string> Details { get; init; } = new();
+    public string RequestId { get; set; } = string.Empty;
+    public bool Success { get; set; }
+    public string ResultCode { get; set; } = string.Empty;
+    public string? MessageKey { get; set; }
+    public long PreviousWorldVersion { get; set; }
+    public long ResultingWorldVersion { get; set; }
+    public List<string> AffectedObjectIds { get; set; } = new();
+    public List<string> CreatedObjectIds { get; set; } = new();
+    public decimal MoneyChange { get; set; }
+    public Dictionary<string, string> Details { get; set; } = new();
 }
 
 public sealed record MoneyOperation(string OperationId, MoneyCategory Category, decimal Amount, SpendingPolicy SpendingPolicy, string? FactoryId = null, string? RelatedObjectId = null, string? RelatedOrderId = null, string? RelatedTaskId = null, string? RelatedRequestId = null);
+}

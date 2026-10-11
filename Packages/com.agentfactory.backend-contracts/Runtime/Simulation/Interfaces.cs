@@ -1,9 +1,14 @@
+﻿#nullable enable
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using AgentFactory.Contracts.Core;
 using AgentFactory.Contracts.Definitions;
 using AgentFactory.Contracts.Operations;
 using AgentFactory.Contracts.World;
 
-namespace AgentFactory.Contracts.Simulation;
+namespace AgentFactory.Contracts.Simulation
+{
 
 public interface IWorldRequestHandler { OperationResult Handle(OperationRequest request, WorldState world, GameDefinitions definitions); }
 public interface IFactorySimulation { void Step(WorldState world, FactoryState factory, GameDefinitions definitions, double deltaTime); }
@@ -22,4 +27,5 @@ public sealed class ValidationReport
     public bool IsValid => Errors.Count == 0;
     public List<string> Errors { get; } = new();
     public List<string> Warnings { get; } = new();
+}
 }

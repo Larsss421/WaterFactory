@@ -1,6 +1,11 @@
+﻿#nullable enable
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using AgentFactory.Contracts.Core;
 
-namespace AgentFactory.Contracts.World;
+namespace AgentFactory.Contracts.World
+{
 
 public sealed class ConstructionState
 {
@@ -14,7 +19,7 @@ public sealed class ConstructionState
 
 public sealed class UpgradeRuntimeState
 {
-    public required string UpgradeId { get; set; }
+    public string UpgradeId { get; set; } = string.Empty;
     public int OriginalLevel { get; set; }
     public int TargetLevel { get; set; }
     public decimal PaidAmount { get; set; }
@@ -57,10 +62,10 @@ public sealed class PipeDamageState
 
 public sealed class TaskState
 {
-    public required string TaskId { get; set; }
+    public string TaskId { get; set; } = string.Empty;
     public TaskType Type { get; set; }
-    public required string FactoryId { get; set; }
-    public required string TargetInstanceId { get; set; }
+    public string FactoryId { get; set; } = string.Empty;
+    public string TargetInstanceId { get; set; } = string.Empty;
     public int Priority { get; set; }
     public long CreatedSequence { get; set; }
     public string? ManuallyAssignedAgentId { get; set; }
@@ -83,8 +88,8 @@ public sealed class TaskState
 
 public sealed class AgentState
 {
-    public required string AgentId { get; set; }
-    public required string FactoryId { get; set; }
+    public string AgentId { get; set; } = string.Empty;
+    public string FactoryId { get; set; } = string.Empty;
     public AgentWorkState State { get; set; }
     public GridCell CurrentCell { get; set; }
     public string? CurrentTaskId { get; set; }
@@ -93,12 +98,12 @@ public sealed class AgentState
 
 public sealed class OrderState
 {
-    public required string OrderId { get; set; }
+    public string OrderId { get; set; } = string.Empty;
     public string? OrderDefinitionId { get; set; }
-    public required string FactoryId { get; set; }
+    public string FactoryId { get; set; } = string.Empty;
     public OrderSource Source { get; set; }
     public OrderStatus Status { get; set; }
-    public required string TargetFluidId { get; set; }
+    public string TargetFluidId { get; set; } = string.Empty;
     public double RequiredAmount { get; set; }
     public double DeliveredAmount { get; set; }
     public decimal PricePerUnit { get; set; }
@@ -128,7 +133,7 @@ public sealed class BankruptcyState
 
 public sealed class MoneyTransaction
 {
-    public required string TransactionId { get; set; }
+    public string TransactionId { get; set; } = string.Empty;
     public long Sequence { get; set; }
     public double SimTime { get; set; }
     public MoneyCategory Category { get; set; }
@@ -156,7 +161,7 @@ public sealed class StoryState
 
 public sealed class StoryChapterState
 {
-    public required string ChapterId { get; set; }
+    public string ChapterId { get; set; } = string.Empty;
     public StoryProgressStatus Status { get; set; }
     public double? StartedAtSimTime { get; set; }
     public double? CompletedAtSimTime { get; set; }
@@ -164,9 +169,9 @@ public sealed class StoryChapterState
 
 public sealed class StoryContractState
 {
-    public required string ContractId { get; set; }
-    public required string ContractDefinitionId { get; set; }
-    public required string ChapterId { get; set; }
+    public string ContractId { get; set; } = string.Empty;
+    public string ContractDefinitionId { get; set; } = string.Empty;
+    public string ChapterId { get; set; } = string.Empty;
     public string? FactoryId { get; set; }
     public StoryProgressStatus Status { get; set; }
     public Dictionary<string, StoryObjectiveState> Objectives { get; set; } = new();
@@ -177,7 +182,7 @@ public sealed class StoryContractState
 
 public sealed class StoryObjectiveState
 {
-    public required string ObjectiveId { get; set; }
+    public string ObjectiveId { get; set; } = string.Empty;
     public bool IsCompleted { get; set; }
     public double CurrentAmount { get; set; }
     public int CurrentCount { get; set; }
@@ -186,9 +191,9 @@ public sealed class StoryObjectiveState
 
 public sealed class GameEvent
 {
-    public required string EventId { get; set; }
+    public string EventId { get; set; } = string.Empty;
     public long Sequence { get; set; }
-    public required string EventType { get; set; }
+    public string EventType { get; set; } = string.Empty;
     public double SimTime { get; set; }
     public string? FactoryId { get; set; }
     public string? RelatedObjectId { get; set; }
@@ -200,9 +205,10 @@ public sealed class GameEvent
 
 public sealed class ProcessedRequestRecord
 {
-    public required string RequestId { get; set; }
-    public required string PlayerId { get; set; }
+    public string RequestId { get; set; } = string.Empty;
+    public string PlayerId { get; set; } = string.Empty;
     public bool Success { get; set; }
-    public required string ResultCode { get; set; }
+    public string ResultCode { get; set; } = string.Empty;
     public long ResultingWorldVersion { get; set; }
+}
 }

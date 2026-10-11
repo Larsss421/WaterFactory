@@ -1,6 +1,11 @@
+﻿#nullable enable
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using AgentFactory.Contracts.Core;
 
-namespace AgentFactory.Contracts.World;
+namespace AgentFactory.Contracts.World
+{
 
 public sealed class WorldState
 {
@@ -29,8 +34,8 @@ public sealed class FeatureFlags
 
 public sealed class FactoryState
 {
-    public required string FactoryId { get; set; }
-    public required string FactoryDefinitionId { get; set; }
+    public string FactoryId { get; set; } = string.Empty;
+    public string FactoryDefinitionId { get; set; } = string.Empty;
     public bool IsPurchased { get; set; }
     public double PurchasedAtSimTime { get; set; }
     public GridRuntimeState Grid { get; set; } = new();
@@ -65,9 +70,9 @@ public sealed class GridCellState
 
 public sealed class LandParcelState
 {
-    public required string ParcelId { get; set; }
-    public required string ParcelDefinitionId { get; set; }
-    public required string FactoryId { get; set; }
+    public string ParcelId { get; set; } = string.Empty;
+    public string ParcelDefinitionId { get; set; } = string.Empty;
+    public string FactoryId { get; set; } = string.Empty;
     public bool IsPurchased { get; set; }
     public double? PurchasedAtSimTime { get; set; }
     public decimal? ActualPurchasePrice { get; set; }
@@ -76,9 +81,9 @@ public sealed class LandParcelState
 
 public abstract class PlaceableState
 {
-    public required string InstanceId { get; set; }
-    public required string DefinitionId { get; set; }
-    public required string FactoryId { get; set; }
+    public string InstanceId { get; set; } = string.Empty;
+    public string DefinitionId { get; set; } = string.Empty;
+    public string FactoryId { get; set; } = string.Empty;
     public GridAnchor Anchor { get; set; }
     public List<GridCell> OccupiedCells { get; set; } = new();
     public PlaceableLifeState LifeState { get; set; }
@@ -104,7 +109,7 @@ public sealed class DeviceState : PlaceableState
 
 public sealed class PipeState : PlaceableState
 {
-    public required string PipeTypeId { get; set; }
+    public string PipeTypeId { get; set; } = string.Empty;
     public PipeRuntimeState PipeStateValue { get; set; }
     public float Health { get; set; } = 100;
     public float CurrentPressure { get; set; }
@@ -119,9 +124,9 @@ public sealed class PipeState : PlaceableState
 
 public sealed class PortState
 {
-    public required string PortId { get; set; }
-    public required string PortDefinitionId { get; set; }
-    public required string OwnerInstanceId { get; set; }
+    public string PortId { get; set; } = string.Empty;
+    public string PortDefinitionId { get; set; } = string.Empty;
+    public string OwnerInstanceId { get; set; } = string.Empty;
     public GridCell WorldCell { get; set; }
     public GridDirection WorldFacing { get; set; }
     public PortDirection Direction { get; set; }
@@ -134,8 +139,8 @@ public sealed class PortState
 
 public sealed class FluidBufferState
 {
-    public required string BufferId { get; set; }
-    public required string OwnerInstanceId { get; set; }
+    public string BufferId { get; set; } = string.Empty;
+    public string OwnerInstanceId { get; set; } = string.Empty;
     public BufferRole Role { get; set; }
     public double Capacity { get; set; }
     public bool AllowMixedInput { get; set; }
@@ -144,7 +149,7 @@ public sealed class FluidBufferState
 
 public sealed class FluidStack
 {
-    public required string FluidId { get; set; }
+    public string FluidId { get; set; } = string.Empty;
     public double Amount { get; set; }
     public float? Temperature { get; set; }
     public Phase? Phase { get; set; }
@@ -152,12 +157,12 @@ public sealed class FluidStack
 
 public sealed class FluidPacketState
 {
-    public required string PacketId { get; set; }
-    public required string FactoryId { get; set; }
-    public required string FluidId { get; set; }
+    public string PacketId { get; set; } = string.Empty;
+    public string FactoryId { get; set; } = string.Empty;
+    public string FluidId { get; set; } = string.Empty;
     public double Amount { get; set; }
     public FluidLocationType LocationType { get; set; }
-    public required string HolderInstanceId { get; set; }
+    public string HolderInstanceId { get; set; } = string.Empty;
     public string? HolderSlotId { get; set; }
     public string? NetworkId { get; set; }
     public double Progress01 { get; set; }
@@ -171,8 +176,8 @@ public sealed class FluidPacketState
 
 public sealed class ConnectionState
 {
-    public required string ConnectionId { get; set; }
-    public required string FactoryId { get; set; }
+    public string ConnectionId { get; set; } = string.Empty;
+    public string FactoryId { get; set; } = string.Empty;
     public ConnectionEndpoint EndpointA { get; set; } = new();
     public ConnectionEndpoint EndpointB { get; set; } = new();
     public ConnectionStatus Status { get; set; }
@@ -181,7 +186,7 @@ public sealed class ConnectionState
 
 public sealed class ConnectionEndpoint
 {
-    public required string OwnerInstanceId { get; set; }
+    public string OwnerInstanceId { get; set; } = string.Empty;
     public ConnectionEndpointType Type { get; set; }
     public string? PortId { get; set; }
     public string? ChannelId { get; set; }
@@ -191,12 +196,13 @@ public sealed class ConnectionEndpoint
 
 public sealed class PipeNetworkState
 {
-    public required string NetworkId { get; set; }
-    public required string FactoryId { get; set; }
+    public string NetworkId { get; set; } = string.Empty;
+    public string FactoryId { get; set; } = string.Empty;
     public HashSet<string> DevicePortIds { get; set; } = new();
     public HashSet<string> PipeIds { get; set; } = new();
     public HashSet<string> ConnectionIds { get; set; } = new();
     public NetworkRuntimeStatus Status { get; set; }
     public double TotalContainedAmount { get; set; }
     public long TopologyVersion { get; set; }
+}
 }

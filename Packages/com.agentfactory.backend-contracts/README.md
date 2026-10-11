@@ -1,25 +1,26 @@
 # AgentFactory Backend Contracts
 
-本仓库是《异星流体工厂》前十个后端阶段的团队交接包。它定义权威世界状态、静态配置、操作请求、模拟接口和验收边界，不包含 Unity 场景、动画、UI 或具体寻路算法实现。
+本包是《异星流体工厂》的后端模拟核心。它包含权威世界状态、静态配置、操作请求、确定性模拟算法、存档服务、不变量校验和验收边界；不包含 Unity 场景、动画或 UI 表现。
 
 ## 交付方式
 
-团队协作以 GitHub 仓库为唯一主版本。建议将本目录作为 Unity 项目仓库中的 `Packages/com.agentfactory.backend-contracts`，或作为独立仓库通过 Git Submodule 引入。每个可验收版本创建 Git Tag，并导出同版本 ZIP 作为冻结快照。
+团队协作以 GitHub 仓库为唯一主版本。本包作为 Unity 工程中的嵌入式 UPM 包位于 `Packages/com.agentfactory.backend-contracts`。每个可验收版本创建 Git Tag；ZIP 只能作为同版本的冻结快照，不能代替仓库源代码。
 
 ## 目录
 
 ```text
-src/AgentFactory.Contracts/
+Runtime/
   Core/          基础坐标和枚举
   Definitions/   不随单局改变的配置数据
   World/         权威运行状态
   Operations/    玩家或联机操作请求与结果
-  Simulation/    模拟模块必须实现的接口
-docs/
+  Simulation/    模拟接口与核心实现
+Documentation~/
   HANDOFF.md               接入与交接说明
   DATA_DICTIONARY.md       类、字段和所有权说明
   SIMULATION_ACCEPTANCE.md 模拟验收测试
-examples/
+  SIMULATION_IMPLEMENTATION.md 实现结构和集成说明
+Samples~/MinimalWorld/
   minimal-world.json       最小世界快照示例
 ```
 
@@ -38,12 +39,8 @@ examples/
 
 ## 构建
 
-```bash
-dotnet build AgentFactoryBackend.sln
-```
-
-Unity 若不支持项目当前 C# 语法，可在导入时将 `record` 请求 DTO 改为普通可序列化 class；字段语义和 JSON 名称保持不变。
+使用 Unity 6000.3.24f1 打开项目即可由 `AgentFactory.Contracts.asmdef` 编译。JSON 使用 `com.unity.nuget.newtonsoft-json`。当前源代码保持 C# 9 兼容。
 
 ## 交接入口
 
-模拟负责人先阅读 `docs/HANDOFF.md`，再按 `docs/SIMULATION_ACCEPTANCE.md` 从 AF-SIM-01 开始逐项实现和留证。
+模拟负责人先阅读 `Documentation~/HANDOFF.md` 和 `Documentation~/SIMULATION_IMPLEMENTATION.md`，再按 `Documentation~/SIMULATION_ACCEPTANCE.md` 从 AF-SIM-01 开始逐项运行和留证。

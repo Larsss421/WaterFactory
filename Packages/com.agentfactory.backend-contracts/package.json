@@ -4,6 +4,9 @@
   "displayName": "AgentFactory Backend Contracts",
   "description": "Shared data contracts, simulation interfaces, handoff documentation, and acceptance criteria for the WaterFactory simulation.",
   "unity": "6000.3",
+  "dependencies": {
+    "com.unity.nuget.newtonsoft-json": "3.2.2"
+  },
   "author": {
     "name": "WaterFactory Team"
   }

@@ -1,7 +1,9 @@
 {
   "name": "AgentFactory.Contracts",
   "rootNamespace": "AgentFactory.Contracts",
-  "references": [],
+  "references": [
+    "Newtonsoft.Json"
+  ],
   "includePlatforms": [],
   "excludePlatforms": [],
   "allowUnsafeCode": false,
