@@ -1,0 +1,9 @@
+{
+  "name": "AgentFactory.Contracts.Tests",
+  "rootNamespace": "AgentFactory.Contracts.Tests",
+  "references": ["AgentFactory.Contracts"],
+  "optionalUnityReferences": ["TestAssemblies"],
+  "includePlatforms": ["Editor"],
+  "autoReferenced": false,
+  "defineConstraints": ["UNITY_INCLUDE_TESTS"]
+}
